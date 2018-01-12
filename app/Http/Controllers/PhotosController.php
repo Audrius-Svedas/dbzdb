@@ -51,6 +51,8 @@ class PhotosController extends Controller
         ];
 
         Photo::create($post);
+
+        return redirect()->route('index');
     }
 
     /**
