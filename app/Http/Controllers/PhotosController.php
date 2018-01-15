@@ -100,6 +100,15 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $photo = Photo::findOrFail($id);
+
+          if (file_exists(storage_path('app/'.$photo->file_name))){
+              unlink(storage_path('app/'.$photo->file_name));
+              echo $photo." was deleted";
+          }
+
+          $photo->delete();
+          return redirect()->back();
     }
+
 }

@@ -9,7 +9,7 @@
          <div class="col-sm-6 col-md-4">
            <div class="thumbnail">
              @if ($character->featured_photo !== NULL)
-               <img src="{{$character->featured_photo->url}}" alt="...">
+               <a href="{{ route('show', $character->id)}}"><img src="{{$character->featured_photo->url}}" alt="..."></a>
              @endif
 
              <div class="caption">
