@@ -18,3 +18,4 @@ Route::get('/edit/{id}', 'CharacterController@edit')->name('edit');
 Route::post('/update/{id}', 'CharacterController@update')->name('update');
 Route::get('/create-photo/{character_id}','PhotosController@create')->name('create-photo');
 Route::post('/upload-photo/{character_id}','PhotosController@store')->name('upload');
+Route::get('/show/{id}', 'CharacterController@show')->name('show');
