@@ -6,6 +6,9 @@
 
         <p>Select image to upload for {{$character->name}}:</p>
         <input type="file" name="upload">
+        @if ($errors->has('upload'))
+          <i class="has-error ">{{ $errors->first('upload') }}</i></br>
+        @endif
         <br>
         <input type="submit" value="Upload Image" name="submit">
         <br>
