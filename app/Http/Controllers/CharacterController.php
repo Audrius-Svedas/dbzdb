@@ -14,10 +14,10 @@ class CharacterController extends Controller
      */
     public function index()
     {
-          $characters = Character::all();
-          return view('showAll', [
-              'characters' => $characters
-          ]);
+        $characters = Character::all();
+        return view('showAll', [
+            'characters' => $characters
+        ]);
     }
 
     /**
@@ -27,7 +27,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-      return view('createCharacters');
+        return view('createCharacters');
     }
 
     /**
@@ -38,11 +38,11 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validateRequest($request);
+        $this->validateRequest($request);
 
-      $post = $request->except('_token');
-      Character::create($post);
-      return redirect()->route('index');
+        $post = $request->except('_token');
+        Character::create($post);
+        return redirect()->route('index');
     }
 
     /**
@@ -67,7 +67,7 @@ class CharacterController extends Controller
         $character = Character::findOrFail($id);
         return view('edit', [
 
-          'character' => $character
+            'character' => $character
 
         ]);
     }
@@ -81,11 +81,11 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validateRequest($request, $id);
-      $character = Character::findOrFail($id);
-      $post = $request->except('_token');
-      $character->update($post);
-      return redirect()->to('/');
+        $this->validateRequest($request, $id);
+        $character = Character::findOrFail($id);
+        $post = $request->except('_token');
+        $character->update($post);
+        return redirect()->to('/');
     }
 
     /**
@@ -94,36 +94,36 @@ class CharacterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-      public function destroy($id)
-      {
-              $character = Character::findOrFail($id);
-              foreach ($character->photos as $photo){
+    public function destroy($id)
+    {
+        $character = Character::findOrFail($id);
+        foreach ($character->photos as $photo){
 
-                  if (file_exists(storage_path('app/'.$photo->file_name))){
-                      unlink(storage_path('app/'.$photo->file_name));
-                      echo $photo." was deleted";
-                  }
+            if (file_exists(storage_path('app/'.$photo->file_name))){
+                unlink(storage_path('app/'.$photo->file_name));
+                echo $photo." was deleted";
+            }
 
-                  $photo->delete();
-              }
-
-
-              $character->delete();
-             return redirect()->back();
+            $photo->delete();
         }
 
-      private function validateRequest($request, $id = NULL)
-      {
+
+        $character->delete();
+        return redirect()->back();
+    }
+
+    private function validateRequest($request, $id = NULL)
+    {
         $rules = [
-          'name' => 'required|max:255|unique:characters',
-          'race' => 'required',
-          'power_level' => 'required|numeric|max:10000',
-          'description' => 'required'
-      ];
+            'name' => 'required|max:255|unique:characters',
+            'race' => 'required',
+            'power_level' => 'required|numeric|max:10000',
+            'description' => 'required'
+        ];
 
         if ($id != NULL) {
-          $rules['name'].= ',name,'.$id .',id'; 
+            $rules['name'].= ',name,'.$id .',id';
         }
         $request->validate($rules);
-      }
+    }
 }
