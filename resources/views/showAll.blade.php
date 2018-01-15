@@ -13,7 +13,7 @@
              @endif
 
              <div class="caption">
-               <h3>{{ $character->name }}</h3>
+               <h3 class="vidurys">{{ $character->name }}</h3>
              </div>
            </div>
          </div>

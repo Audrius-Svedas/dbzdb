@@ -11,14 +11,7 @@
     <title>DBZDB</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/3.3/examples/theme/theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,7 +24,7 @@
 <div class="container">
 
     @yield('content')
-    
+
 </div> <!-- /container -->
 
 

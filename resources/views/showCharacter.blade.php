@@ -9,7 +9,7 @@
            @endif
 
            <div class="caption">
-             <h3>{{ $character->name }}</h3>
+             <h3 class="vidurys">{{ $character->name }}</h3>
              <p>{{ $character->description}}</p>
              <p>Power_level: {{ $character->power_level}}</p>
              <p><a href="{{ route('edit', $character->id) }}" class="btn btn-primary" role="button">Edit</a>
