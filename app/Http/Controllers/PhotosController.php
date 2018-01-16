@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Character;
 use App\Photo;
 use Illuminate\Http\Request;
+use App\Helpers\PhotoHelper;
 
 class PhotosController extends Controller
 {
+
+    public function __construct(PhotoHelper $photoHelper)
+      {
+        $this->photoHelper = $photoHelper;
+      }
     /**
      * Display a listing of the resource.
      *
@@ -101,14 +107,7 @@ class PhotosController extends Controller
     public function destroy($id)
     {
       $photo = Photo::findOrFail($id);
-
-          if (file_exists(storage_path('app/'.$photo->file_name))){
-              unlink(storage_path('app/'.$photo->file_name));
-              echo $photo." was deleted";
-          }
-
-          $photo->delete();
-          return redirect()->back();
+      $this->photoHelper->deleteOne($photo);
+      return redirect()->back();
     }
-
 }
